@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Film Ajánló Rendszer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Egyedi CSS -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Film Ajánló Rendszer</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="user_id">Felhasználó ID:</label>
+                    <input type="number" id="user_id" name="user_id" class="form-control" placeholder="Add meg a felhasználói azonosítót">
+                </div>
+                <button class="btn btn-primary btn-block" onclick="getRecommendations()">Ajánlások kérése</button>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div id="recommendations" class="text-center"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function getRecommendations() {
+            const userId = document.getElementById('user_id').value;
+            fetch('http://localhost:5000/recommend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_id: userId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const recommendationsDiv = document.getElementById('recommendations');
+                if (data.error) {
+                    recommendationsDiv.innerHTML = '<h2>Hiba:</h2>' + data.error;
+                } else {
+                    recommendationsDiv.innerHTML = '<h2>Ajánlott filmek:</h2><ul class="list-group">' + data.map(movie => `<li class="list-group-item">${movie}</li>`).join('') + '</ul>';
+                }
+            })
+            .catch(error => {
+                const recommendationsDiv = document.getElementById('recommendations');
+                recommendationsDiv.innerHTML = '<h2>Hiba:</h2>' + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
