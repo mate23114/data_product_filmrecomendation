@@ -8,8 +8,7 @@ Kövesd az alábbi lépéseket a projekt telepítéséhez és futtatásához:
 
 1. **Projekt klónozása**:
     ```sh
-    git clone https://github.com/felhasznalo/film-ajanlo-rendszer.git
-    cd film-ajanlo-rendszer
+    git clone https://github.com/mate23114/data_product_filmrecomendation.git
     ```
 
 2. **Függőségek telepítése**:
