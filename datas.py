@@ -1,6 +1,6 @@
 import pandas as pd
 
-# Adatok betöltése a 'data' mappából
+# Adatok betöltése
 movies = pd.read_csv('data/movies.csv')
 ratings = pd.read_csv('data/ratings.csv')
 tags = pd.read_csv('data/tags.csv')

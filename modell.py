@@ -2,7 +2,7 @@ from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 import joblib
 
-# Adatok betöltése a 'data' mappából
+# Adatok betöltése
 user_movie_matrix = pd.read_csv('data/user_movie_matrix.csv', index_col=0)
 
 # KNN modell építése

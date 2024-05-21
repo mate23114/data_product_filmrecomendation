@@ -12,7 +12,7 @@ movies['movieId'] = movies['movieId'].astype(int)
 print(user_movie_matrix.head())
 print(movies.head())
 
-# Ellenőrizd, hogy a user_id szerepel-e az adatokban
+# Ellenőrizzük, hogy a user_id szerepel-e az adatokban
 user_id = 1
 if user_id in user_movie_matrix.index:
     print(f"User ID {user_id} found in the user_movie_matrix.")
@@ -31,6 +31,6 @@ print(f"Indices: {indices}")
 recommended_movie_ids = user_movie_matrix.columns[indices.flatten()].tolist()
 print(f"Recommended Movie IDs: {recommended_movie_ids}")
 
-# Ellenőrizd, hogy ezek az azonosítók léteznek a movies.csv fájlban
+# Ellenőrizzük, hogy ezek az azonosítók léteznek a movies.csv fájlban
 recommended_movies = [movies.loc[movies['movieId'] == int(mid), 'title'].values[0] for mid in recommended_movie_ids if int(mid) in movies['movieId'].values]
 print(f"Recommended Movies: {recommended_movies}")

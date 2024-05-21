@@ -4,9 +4,9 @@ import joblib
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Engedélyezi a CORS-t az összes útvonalhoz
+CORS(app)
 
-# Modell és adatok betöltése a 'data' mappából
+# Modell és adatok betöltése
 model_knn = joblib.load('data/knn_model.pkl')
 user_movie_matrix = pd.read_csv('data/user_movie_matrix.csv', index_col=0)
 movies = pd.read_csv('data/movies.csv')
